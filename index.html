@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: rgb(20, 20, 20);">
+    <div class="c">
+            <video loop id="main">
+                <source src="main.mp4" type="video/mp4">
+            </video>
+    </div>
+
+
+    <div id="spoiler" style="display: block; position: absolute; inset: 0; background: rgb(20, 20, 20);">
+        <img id="captcha" src="captcha.png" type="img/png">
+    </div>
+
+
+    <script>
+        var video = document.getElementById('main');
+        var spoiler = document.getElementById('spoiler');
+        document.addEventListener('click', function () {
+            if (spoiler.style.display === 'block') {
+                spoiler.style.display = 'none'
+                main.play()
+            }
+        });
+    </script>
+
+
+    <h1 id="text">
+        You've been rickrolled by <a href="https://taplink.cc/firhole" style="color: brown;">FirHole</a>
+    </h1>
+</body>
+</html>
