@@ -14,14 +14,13 @@
     left: 10px;
 }
 
-.text-container {
-    height: 15vh;
+#text {
     font-family: 'Times New Roman', Arial;
     font-variant: normal;
     vertical-align: baseline;
     text-align: center;
     color: #ffffff;
-    background: red;
+    display: none;
 }
 
 .c {
@@ -32,6 +31,7 @@
     position: relative;
 
 }
+
 
 
 
