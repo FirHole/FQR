@@ -21,6 +21,7 @@
     vertical-align: baseline;
     text-align: center;
     color: #ffffff;
+    background: red;
 }
 
 .c {
@@ -31,5 +32,6 @@
     position: relative;
 
 }
+
 
 
