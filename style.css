@@ -6,21 +6,21 @@
     outline: 3px solid #ffffff; 
 }
 
-#text {
-    font-family: 'Times New Roman', Arial;
-    font-variant: normal;
-    vertical-align: baseline;
-    text-align: center;
-    color: #ffffff;
-    display: none;
-}
-
 #captcha {
     width: 25%;
     height: auto;
     position: absolute;
     top: 10px;
     left: 10px;
+}
+
+.text-container {
+    height: 20vh;
+    font-family: 'Times New Roman', Arial;
+    font-variant: normal;
+    vertical-align: baseline;
+    text-align: center;
+    color: #ffffff;
 }
 
 .c {
@@ -31,4 +31,5 @@
     position: relative;
 
 }
+
 
