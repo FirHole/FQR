@@ -33,7 +33,7 @@
                 main.play()
             }
         });
-        video.addEventListener('play', function() {
+        video.addEventListener('loadeddata', function() {
             text.style.display = 'block';
         });
     </script>
@@ -41,6 +41,7 @@
 </body>
 
 </html>
+
 
 
 
