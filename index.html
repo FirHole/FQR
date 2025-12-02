@@ -18,23 +18,26 @@
     <div id="spoiler" style="display: block; position: absolute; inset: 0; background: rgb(20, 20, 20);">
         <img id="captcha" src="captcha.png" type="img/png">
     </div>
-
+  
+    <h1 id="text">
+        You've been rickrolled by <a href="https://taplink.cc/firhole" style="color: brown;">FirHole</a>
+    </h1>
 
     <script>
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
+        var text = document.getElementById('text');
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
                 spoiler.style.display = 'none'
                 main.play()
             }
         });
+        video.addEventListener('play', function() {
+            text.style.display = 'block';
+        });
     </script>
 
-
-    <h1 id="text">
-        You've been rickrolled by <a href="https://taplink.cc/firhole" style="color: brown;">FirHole</a>
-    </h1>
 </body>
 
 </html>
