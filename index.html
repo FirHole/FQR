@@ -37,12 +37,13 @@
        if (country != 'Russia') {
            video.scr = 'https://youtu.be/SqwKcwlrjWU'
            video.load()
+           alert(country)
        }
       
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
                 spoiler.style.display = 'none'
-                main.play()
+                video.play()
             }
         });
         video.addEventListener('loadeddata', function() {
@@ -53,6 +54,7 @@
 </body>
 
 </html>
+
 
 
 
