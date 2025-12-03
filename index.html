@@ -27,6 +27,18 @@
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
         var text = document.getElementById('text');
+        let country = 'idk';
+      
+        fetch('http://ip-api.com/json/?fields=country')
+            .then(response => response.json())
+            .then(data => {
+                country = data.country;
+        });
+       if (country === 'Russia') {
+           video.scr = 'https://youtu.be/SqwKcwlrjWU'
+           video.load()
+       }
+      
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
                 spoiler.style.display = 'none'
@@ -41,6 +53,7 @@
 </body>
 
 </html>
+
 
 
 
