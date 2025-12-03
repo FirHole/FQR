@@ -27,19 +27,6 @@
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
         var text = document.getElementById('text');
-
-        fetch('https://ipwhois.app/json/')
-  .then(response => response.json())
-  .then(data => {
-    if (data.country != 'Russia') {
-           video.scr = 'https://youtu.be/SqwKcwlrjWU';
-           video.load();
-           alert(data.country);
-       }
-  })
-  .catch(error => {
-    console.error('Ошибка:', error);
-  });
       
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
@@ -51,10 +38,9 @@
             text.style.display = 'block';
         });
     </script>
-
 </body>
-
 </html>
+
 
 
 
