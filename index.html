@@ -22,9 +22,13 @@
     <h1 id="text">
         You've been rickrolled by <a href="https://taplink.cc/firhole" style="color: brown;">FirHole</a>
     </h1>
-
+  
     <script>
-fetch('https://ipwhois.app/json/')
+        var video = document.getElementById('main');
+        var spoiler = document.getElementById('spoiler');
+        var text = document.getElementById('text');
+
+        fetch('https://ipwhois.app/json/')
   .then(response => response.json())
   .then(data => {
     if (data.country != 'Russia') {
@@ -36,12 +40,6 @@ fetch('https://ipwhois.app/json/')
   .catch(error => {
     console.error('Ошибка:', error);
   });
-</script>
-  
-    <script>
-        var video = document.getElementById('main');
-        var spoiler = document.getElementById('spoiler');
-        var text = document.getElementById('text');
       
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
@@ -57,6 +55,7 @@ fetch('https://ipwhois.app/json/')
 </body>
 
 </html>
+
 
 
 
