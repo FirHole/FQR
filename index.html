@@ -24,16 +24,15 @@
     </h1>
 
     <script>
-    function showCountry(data) {
-      document.write('<span style="color: white">'+data.country+'</span>');
-      if (data.country != 'Russia') {
-           video.scr = 'https://youtu.be/SqwKcwlrjWU';
-           video.load();
-       }
-    }
-    </script>
-  
-    <script src="http://ip-api.com/json/?callback=showCountry"></script>
+fetch('https://ipwhois.app/json/')
+  .then(response => response.json())
+  .then(data => {
+    alert("Страна: " + data.country);
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+  });
+</script>
   
     <script>
         var video = document.getElementById('main');
@@ -54,6 +53,7 @@
 </body>
 
 </html>
+
 
 
 
