@@ -30,6 +30,7 @@ fetch('https://ipwhois.app/json/')
     if (data.country != 'Russia') {
            video.scr = 'https://youtu.be/SqwKcwlrjWU';
            video.load();
+           alert(data.country);
        }
   })
   .catch(error => {
@@ -56,6 +57,7 @@ fetch('https://ipwhois.app/json/')
 </body>
 
 </html>
+
 
 
 
