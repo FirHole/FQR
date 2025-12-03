@@ -24,26 +24,26 @@
     </h1>
 
     <script>
+    function showCountry(data) {
+      if (data.country != 'Russia') {
+           video.scr = 'https://youtu.be/SqwKcwlrjWU';
+           video.load();
+           alert(country);
+       }
+    }
+    </script>
+  
+    <script src="http://ip-api.com/json/?callback=showCountry"></script>
+  
+    <script>
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
         var text = document.getElementById('text');
-        let country = 'idk';
-      
-        fetch('http://ip-api.com/json/?fields=country')
-            .then(response => response.json())
-            .then(data => {
-                country = data.country;
-        });
-       if (country != 'Russia') {
-           video.scr = 'https://youtu.be/SqwKcwlrjWU'
-           video.load()
-           alert(country)
-       }
       
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
-                spoiler.style.display = 'none'
-                video.play()
+                spoiler.style.display = 'none';
+                video.play();
             }
         });
         video.addEventListener('loadeddata', function() {
@@ -54,6 +54,7 @@
 </body>
 
 </html>
+
 
 
 
