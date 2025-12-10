@@ -8,6 +8,10 @@
 </head>
 
 <body style="background-color: rgb(20, 20, 20);">
+    <h1 class="text">
+        Happy new year!
+    </h1>
+
     <div class="c">
             <video loop id="main">
                 <source src="main.mp4" type="video/mp4">
@@ -19,11 +23,14 @@
         <img id="captcha" src="captcha.png" type="img/png">
     </div>
   
-    <h1 id="text">
+    <h1 class="text" id="text" style="display: none;">
         You've been rickrolled by <a href="https://taplink.cc/firhole" style="color: brown;">FirHole</a>
     </h1>
+
+    <canvas class="snow"></canvas>
   
     <script>
+        const canvas = document.querySelector(".snow");
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
         var text = document.getElementById('text');
@@ -31,32 +38,99 @@
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
                 spoiler.style.display = 'none';
+                canvas.style.display = 'block';
                 video.play();
             }
         });
+
         video.addEventListener('loadeddata', function() {
             text.style.display = 'block';
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const ctx = canvas.getContext("2d");
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+        const SNOW_DENSITY = 9000;
+        let numFlakes = Math.floor((w * h) / SNOW_DENSITY);
+        let flakes = [];
+        let wind = 0;
+        let speed = 1;
+        function random(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+        function createFlakes() {
+          flakes = [];
+          for (let i = 0; i < numFlakes; i++) {
+            flakes.push({
+              x: random(0, w),
+              y: random(0, h),
+              r: random(1.2, 3.5),
+              d: random(0.5, 1.5),
+              o: random(0.3, 0.9),
+            });
+          }
+        }
+        function drawFlakes() {
+          ctx.clearRect(0, 0, w, h);
+          ctx.save();
+          ctx.globalAlpha = 0.8;
+          ctx.fillStyle = "#fff";
+          flakes.forEach((f) => {
+            ctx.globalAlpha = f.o;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+            ctx.fill();
+          });
+          ctx.restore();
+        }
+        function moveFlakes() {
+          flakes.forEach((f) => {
+            f.y += f.d * speed;
+            f.x += Math.sin(f.y / 30) * 0.6 + wind * f.d;
+            if (f.y > h) {
+              f.y = -f.r;
+              f.x = random(0, w);
+            }
+            if (f.x < 0) f.x = w;
+            if (f.x > w) f.x = 0;
+          });
+        }
+        function animateSnow() {
+          drawFlakes();
+          moveFlakes();
+          requestAnimationFrame(animateSnow);
+        }
+        window.addEventListener("resize", () => {
+          w = window.innerWidth;
+          h = window.innerHeight;
+          canvas.width = w;
+          canvas.height = h;
+          numFlakes = Math.floor((w * h) / SNOW_DENSITY);
+          createFlakes();
+        });
+        window.addEventListener("mousemove", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          if (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+          ) {
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            wind = (x - 0.5) * 2;
+            speed = 0.7 + y;
+          } else {
+            wind = 0;
+            speed = 1;
+          }
+        });
+        createFlakes();
+        animateSnow();
+      });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
