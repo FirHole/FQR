@@ -29,15 +29,105 @@
     </h1>
 
     <canvas class="snow"></canvas>
+
+  
+    <dialog id='dial'>
+      <img id='img' src='face1.png'></img>
+      <p id='pdial'>*</p>
+      <p id='pdial'>
+        <span id='w1'>YOUR</span>
+        <span id='w2'>TAKING</span>
+        <span id='w3'>TOO</span>
+        <span id='w4'>LONG</span>
+      </p>
+    </dialog>
   
     <script>
         const canvas = document.querySelector(".snow");
         var video = document.getElementById('main');
         var spoiler = document.getElementById('spoiler');
         var text = document.getElementById('text');
+
+
+        const dial = document.getElementById('dial')
+        const img = document.getElementById('img')
+        let width = dial.getBoundingClientRect().width - 16
+        let c = 1, coords, src
+    
+        function redraw() {
+          dial.style.width = `${700 * c}px`
+          dial.style.height = `${170 * c}px`
+          img.style.width = `${156 * c}px`
+          img.style.height = `${126 * c}px`
+          dial.style.fontSize = `${36 * c}px`
+        }
+    
+        function start() {
+            const rect = dial.getBoundingClientRect()
+    
+            document.body.appendChild(img)
+            img.style.transform = 'translate(-50%, -50%)'
+            img.style.position = 'absolute'
+            img.style.left = `${rect.left + 78 * c + 8}px`
+            img.style.top = `${rect.top + 85 * c + 8}px`
+    
+            dial.style.display = 'none'
+    
+            img.offsetHeight
+    
+            img.style.left = coords[0] + 'px'
+            img.style.top = coords[1] + 'px'
+            coords = 0
+        }
+    
+        while (716 * c > window.innerWidth * 0.9) {
+          c -= 0.1
+          redraw()
+        }
+        while (716 * c < window.innerWidth * 0.7 && 186 * c < window.innerHeight * 0.2) {
+          c += 0.1
+          redraw()
+        }
+
+        const dialTime = setTimeout(() => {
+          dial.style.display = 'flex'
+    
+          setTimeout(() => {
+            document.getElementById('w1').style.color = 'white'
+          }, 1500)
+        
+          setTimeout(() => {
+            document.getElementById('w2').style.color = 'white'
+          }, 2000)
+        
+          setTimeout(() => {
+            document.getElementById('w3').style.color = 'white'
+          }, 2500)
+          
+          setTimeout(() => {
+            document.getElementById('w4').style.color = 'white'
+          }, 3000)
+    
+          setTimeout(() => {
+            setInterval(() => {
+              src = src === 1 ? 2 : 1
+              img.src = `face${src}.png`
+            }, 100)
+          }, 3500)
+    
+          setTimeout(() => {
+            if (coords) {
+              start()
+            } else {
+              coords = 1
+            }
+          }, 4500)
+        }, 5000)
+      
       
         document.addEventListener('click', function () {
             if (spoiler.style.display === 'block') {
+                clearTimeout(dialTime)
                 spoiler.style.display = 'none';
                 canvas.style.display = 'block';
                 video.play();
@@ -129,7 +219,21 @@
             wind = 0;
             speed = 1;
           }
+
+
+          if (coords === 0) {
+            img.style.left = e.pageX + 'px'
+            img.style.top = e.pageY + 'px'
+          } else {
+            if (coords === 1) {
+              coords = [e.pageX, e.pageY]
+              start()
+            } else {
+              coords = [e.pageX, e.pageY]
+            }
+          }
         });
+          
         createFlakes();
         animateSnow();
       });
