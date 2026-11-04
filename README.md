@@ -1,1 +1,1 @@
-[Free robux](https://fqr.vercel.app).
+[Free robux](https://fqr.vercel.app)
